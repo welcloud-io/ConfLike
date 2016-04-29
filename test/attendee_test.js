@@ -34,7 +34,7 @@ describe('AttendeePrez', function() {
   });
   
   describe('Attendee Dislike Conference', function() {
-    it('should mark teacher conference as Disliked when YES pressed', function() {
+    it('should mark teacher conference as Disliked when NO pressed', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('NON');
       browser.assert.text('#counter', '-1');      

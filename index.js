@@ -9,7 +9,9 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/attendee.html');
 });
 
+var host = process.env.HOST || '0.0.0.0';
 var port = process.env.PORT || 8080;
+
 http.listen(port, function () {
-  console.log('Example app listening on port', "0.0.0.0" + ":" + port);
+  console.log('ConfLike listening on port', host + ":" + port);
 });

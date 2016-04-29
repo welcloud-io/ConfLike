@@ -1,6 +1,8 @@
 const Browser = require('zombie');
 
-Browser.localhost('powerprez-welcloud.c9users.io:8080', 3001);
+var host = process.env.HOST || 'powerprez-welcloud.c9users.io';
+var port = process.env.PORT || 8080;
+Browser.localhost(host + ':' + port, 3001);
 
 describe('AttendeePrez', function() {
   const browser = new Browser();

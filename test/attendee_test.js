@@ -16,28 +16,46 @@ describe('AttendeePrez', function() {
 
     it('should show a question on page', function() {
       browser.assert.hasClass('#page_1','visible');
-      browser.assert.text('#page_1', 'Avez vous aimer cette conférence ?');
+      browser.assert.text('#page_1', "Qu'avez penser de cette conférence ?");
     });
     
-    it('should show a YES and a NO button on page', function() {
-      browser.assert.text('#oui', 'OUI');
-      browser.assert.text('#non', 'NON');     
+    it('should show the answer panel', function() {
+      browser.assert.text('#not_great', 'Pas Super');
+      browser.assert.text('#so_so', 'Moyen');     
+      browser.assert.text('#good', 'Bien');     
+      browser.assert.text('#very_good', 'Très bien');     
     });
   });
   
-  describe('Attendee Like Conference', function() {
-    it('should mark teacher conference as liked when YES pressed', function() {
+  describe('Attendee find the conference is not great', function() {
+    it('should mark conference as not great', function() {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('OUI');
-      browser.assert.text('#counter', '1');      
+      browser.pressButton('Pas Super');
+      browser.assert.text('#counter', '-2');      
     }); 
   });
   
-  describe('Attendee Dislike Conference', function() {
+  describe('Attendee find the conference is so so', function() {
     it('should mark teacher conference as Disliked when NO pressed', function() {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('NON');
+      browser.pressButton('Moyen');
       browser.assert.text('#counter', '-1');      
+    });    
+  }); 
+  
+  describe('Attendee find the conference is good', function() {
+    it('should mark teacher conference as Disliked when NO pressed', function() {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Bien');
+      browser.assert.text('#counter', '+1');      
+    });    
+  });
+  
+  describe('Attendee find the conference is very good', function() {
+    it('should mark teacher conference as Disliked when NO pressed', function() {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Très bien');
+      browser.assert.text('#counter', '+2');      
     });    
   });  
 });

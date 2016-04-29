@@ -6,28 +6,38 @@
   </head>
   
   <script>
-    function LikeConference(){
+    function LikeConference(level){
       var counterElement = document.getElementById('counter');
-      counterElement.innerHTML = 1;
+      counterElement.innerHTML = level;
     }
-    function DislikeConference(){
+    function DislikeConference(level){
       var counterElement = document.getElementById('counter');
-      counterElement.innerHTML = -1;
+      counterElement.innerHTML = level;
     }    
   </script>
   
   <body>
-    <div class="visible" id="page_1" >Avez vous aimer cette conférence ?</div>
+    <div class="visible" id="page_1" >Qu'avez penser de cette conférence ?</div>
     <button type="button" 
-            id="oui" 
-            onclick="LikeConference()">
-    OUI
+            id="not_great" 
+            onclick="DislikeConference('-2')">
+    Pas Super
     </button>
     <button type="button" 
-            id="non" 
-            onclick="DislikeConference()">
-    NON
+            id="so_so" 
+            onclick="DislikeConference('-1')">
+    Moyen
     </button>
+    <button type="button" 
+            id="good" 
+            onclick="LikeConference('+1')">
+    Bien
+    </button>
+    <button type="button" 
+            id="very_good" 
+            onclick="LikeConference('+2')">
+    Très bien
+    </button>    
     <div id="counter">0</button>
   </body>
 

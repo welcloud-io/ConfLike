@@ -1,0 +1,23 @@
+{
+  "name": "conflike",
+  "version": "1.0.0",
+  "description": "An app to 'like' conferences on the fly",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "conference"
+  ],
+  "author": "Olivier Lemaitre",
+  "license": "ISC",
+  "devDependencies": {
+    "zombie": "^4.2.1"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

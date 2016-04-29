@@ -15,6 +15,7 @@
   "author": "Olivier Lemaitre",
   "license": "ISC",
   "devDependencies": {
+    "mocha": "^2.4.5",
     "zombie": "^4.2.1"
   },
   "dependencies": {

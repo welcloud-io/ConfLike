@@ -6,12 +6,7 @@
   </head>
 
   <script>
-    function LikeConference(level) {
-      var counterElement = document.getElementById('counter');
-      counterElement.innerHTML = level;
-    }
-
-    function DislikeConference(level) {
+    function judgeConference(level) {
       var counterElement = document.getElementById('counter');
       counterElement.innerHTML = level;
     }
@@ -19,16 +14,16 @@
 
   <body>
     <div class="visible" id="page_1">Qu'avez vous pensé de cette conférence ?</div>
-    <button type="button" id="not_great" onclick="DislikeConference('-2')">
+    <button type="button" id="not_great" onclick="judgeConference('-2')">
       Pas Super
     </button>
-    <button type="button" id="so_so" onclick="DislikeConference('-1')">
+    <button type="button" id="so_so" onclick="judgeConference('-1')">
       Moyen
     </button>
-    <button type="button" id="good" onclick="LikeConference('+1')">
+    <button type="button" id="good" onclick="judgeConference('+1')">
       Bien
     </button>
-    <button type="button" id="very_good" onclick="LikeConference('+2')">
+    <button type="button" id="very_good" onclick="judgeConference('+2')">
       Très bien
     </button>
     <div id="counter">0</div>

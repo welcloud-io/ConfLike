@@ -15,8 +15,12 @@ describe('AttendeePrez', function() {
     it('should load successful', function() {
       browser.assert.success();
     });
+    
+    it('should show the conference title', function() {
+      browser.assert.text('#conference_title', "Scrum pour les nuls");
+    });
 
-    it('should show a question on page', function() {
+    it('should show a question', function() {
       browser.assert.text('#question', "Qu'avez vous pensé de cette conférence ?");
     });
     

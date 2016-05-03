@@ -17,8 +17,7 @@ describe('AttendeePrez', function() {
     });
 
     it('should show a question on page', function() {
-      browser.assert.hasClass('#page_1','visible');
-      browser.assert.text('#page_1', "Qu'avez vous pensé de cette conférence ?");
+      browser.assert.text('#question', "Qu'avez vous pensé de cette conférence ?");
     });
     
     it('should show the answer panel', function() {

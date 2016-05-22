@@ -23,23 +23,23 @@ describe('Program', function() {
       browser.assert.success();
     });
     
-    it('should show conference schedule', function() {
-      browser.assert.text('#conference_schedule', conference_schedule);
+    it('should show conference 1 schedule', function() {
+      browser.assert.text('#conference_1 #conference_schedule', conference_schedule);
     });    
     
-    it('should show conference room', function() {
-      browser.assert.text('#conference_room', conference_room);
+    it('should show conference 1 room', function() {
+      browser.assert.text('#conference_1 #conference_room', conference_room);
     });
     
-    it('should show conference link', function() {
+    it('should show conference 1 link', function() {
       browser.assert.link(conference_selector, conference_title, conference_path);
     });
     
-    it('should show speaker name', function() {
-      browser.assert.text('#speaker_name', speaker_name);
+    it('should show conference 1 speaker name', function() {
+      browser.assert.text('#conference_1 #speaker_name', speaker_name);
     });    
     
-    it('should show the conference page when link to conference is clicked', function() {
+    it('should show the conference 1 page when link to conference 1 is clicked', function() {
         browser.clickLink(conference_selector, function() {
             browser.assert.text('#conference_title', conference_title);
         });      

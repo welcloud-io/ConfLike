@@ -6,27 +6,72 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
 
+  <body onload="createPage()">
+    <div id="page"></div>
+  </body>  
+
   <script>
     function judgeConference(level) {
       var counterElement = document.getElementById('counter');
       counterElement.innerHTML = level;
     }
+    function createPage() {
+      document.getElementById("page").innerHTML = navBar() +programPage();    
+    }
+    function conference_list() {
+      return [
+        {
+          "id" : "scrum-pour-les-nuls",
+          "schedule" : "10:00", 
+          "room" : "Auditorium", 
+          "title" : "Scrum pour les nuls",
+          "speaker_name" : "Jeff Shuterland"
+        },
+        {
+          "id" : "xp-pour-les-nuls",
+          "schedule" : "10:00", 
+          "room" : "Auditorium", 
+          "title" : "XP pour les nuls",
+          "speaker_name" : "Kent Beck"
+        },
+        {
+          "id" : "christal-clear-pour-les-nuls",
+          "schedule" : "10:00", 
+          "room" : "Auditorium", 
+          "title" : "Christal clear pour les nuls",
+          "speaker_name" : "Alistair Cockburn"
+        }    
+      ];
+    }
+    function navBar() {
+      return `
+      <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+        <div class='navbar-header'>
+          <a class='navbar-brand' href='#'>ConfLike</a>
+        </div>
+      </nav>`
+    }
+    function programPage() {
+      var conferences = conference_list();
+      var number_of_conferences = conferences.length;      
+      
+      var separator = " ";
+      var program_page = "";
+
+      for (var conference_number=0; conference_number<number_of_conferences; conference_number++) {
+        program_page += 
+        "<div id='conference_" + (conference_number+1) + "'>" + 
+          "<span id='conference_schedule'>"+ conferences[conference_number].schedule + "</span>" + separator +
+          "<span id='conference_room'>" + conferences[conference_number].room + "</span>\n" + separator +
+          "<a id='"+ conferences[conference_number].id +"' href='/"+ conferences[conference_number].id +"'>" + conferences[conference_number].title + "</a>\n" + separator +
+          "<span>par</span>\n" + separator +
+          "<span id='speaker_name'>" + conferences[conference_number].speaker_name + "</span>" + separator +
+        "</div>\n";
+        }
+      
+      return  program_page;
+    }    
   </script>
-
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">ConfLike</a>
-      </div>
-    </nav>
-    <div>
-      <span id="conference_schedule">10:00</span>
-      <span id="conference_room">Auditorium</span>
-      <a id="scrum-pour-les-nuls" href="/scrum-pour-les-nuls">Scrum pour les nuls</a>
-      <span>par</span>
-      <span id="speaker_name">Jeff Shuterland</span>
-    </div>
-  </body>
-
+  
 </html>

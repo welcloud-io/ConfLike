@@ -4,7 +4,7 @@ var host = process.env.HOST || 'powerprez-welcloud.c9users.io';
 var port = process.env.PORT || 8080;
 Browser.localhost(host + ':' + port, 3001);
 
-describe('AttendeePrez', function() {
+describe('Conference', function() {
   const browser = new Browser();
 
   beforeEach(function(done) {
@@ -17,8 +17,16 @@ describe('AttendeePrez', function() {
     });
     
     it('should show the conference title', function() {
+      browser.assert.text('#conference_room', "Auditorium");
+    });    
+    
+    it('should show the conference title', function() {
       browser.assert.text('#conference_title', "Scrum pour les nuls");
     });
+    
+    it('should show the speaker name', function() {
+      browser.assert.text('#speaker_name', "Jeff Shuterland");
+    });    
 
     it('should show a question', function() {
       browser.assert.text('#question', "Qu'avez vous pensé de cette conférence ?");

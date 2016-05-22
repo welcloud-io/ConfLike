@@ -4,11 +4,55 @@ var host = process.env.HOST || 'powerprez-welcloud.c9users.io';
 var port = process.env.PORT || 8080;
 Browser.localhost(host + ':' + port, 3001);
 
-describe('Conference', function() {
+const conference_title = 'Scrum pour les nuls'
+const conference_schedule = '10:00'
+const conference_room = 'Auditorium'
+const speaker_name = 'Jeff Shuterland'
+const conference_selector = "#scrum-pour-les-nuls"
+const conference_path = "/scrum-pour-les-nuls"
+
+describe('Program', function() {
   const browser = new Browser();
 
   beforeEach(function(done) {
     browser.visit('/', done);
+  });
+  
+  describe('Program Page', function() {
+    it('should load successful', function() {
+      browser.assert.success();
+    });
+    
+    it('should show conference schedule', function() {
+      browser.assert.text('#conference_schedule', conference_schedule);
+    });    
+    
+    it('should show conference room', function() {
+      browser.assert.text('#conference_room', conference_room);
+    });
+    
+    it('should show conference link', function() {
+      browser.assert.link(conference_selector, conference_title, conference_path);
+    });
+    
+    it('should show speaker name', function() {
+      browser.assert.text('#speaker_name', speaker_name);
+    });    
+    
+    it('should show the conference page when link to conference is clicked', function() {
+        browser.clickLink(conference_selector, function() {
+            browser.assert.text('#conference_title', conference_title);
+        });      
+    });
+  });
+});
+
+
+describe('Conference', function() {
+  const browser = new Browser();
+
+  beforeEach(function(done) {
+    browser.visit(conference_path, done);
   });
 
   describe('Conference Page', function() {
@@ -17,15 +61,15 @@ describe('Conference', function() {
     });
     
     it('should show the conference title', function() {
-      browser.assert.text('#conference_room', "Auditorium");
+      browser.assert.text('#conference_room', conference_room);
     });    
     
     it('should show the conference title', function() {
-      browser.assert.text('#conference_title', "Scrum pour les nuls");
+      browser.assert.text('#conference_title', conference_title);
     });
     
     it('should show the speaker name', function() {
-      browser.assert.text('#speaker_name', "Jeff Shuterland");
+      browser.assert.text('#speaker_name', speaker_name);
     });    
 
     it('should show a question', function() {

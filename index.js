@@ -5,8 +5,12 @@ var http = require('http').Server(app);
 
 app.use(express.static('public'));
 
+app.get('/scrum-pour-les-nuls', function(req, res){
+  res.sendFile(__dirname + '/scrum-pour-les-nuls.html');
+});
+
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/attendee.html');
+  res.sendFile(__dirname + '/program.html');
 });
 
 var host = process.env.HOST || '0.0.0.0';

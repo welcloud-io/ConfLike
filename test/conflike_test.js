@@ -5,8 +5,8 @@ var port = process.env.PORT || 8080;
 Browser.localhost(host + ':' + port, 3001);
 
 const conference_title = 'Scrum pour les nuls'
-const conference_schedule = '10:00'
-const conference_room = 'Auditorium'
+const conference_schedule = '10-00'
+const conference_room = 'auditorium'
 const speaker_name = 'Jeff Shuterland'
 const conference_id = "scrum-pour-les-nuls"
 const conference_selector = "#" + conference_id
@@ -61,7 +61,7 @@ describe('Conference', function() {
       browser.assert.success();
     });
     
-    it('should show the conference title', function() {
+    it('should show the conference room', function() {
       browser.assert.text('#conference_room', conference_room);
     });    
     

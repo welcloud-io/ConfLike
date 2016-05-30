@@ -22,25 +22,25 @@
       return [
         {
           "id" : "scrum-pour-les-nuls",
-          "path" : "/2016/13/10-00/auditorium",
-          "schedule" : "10:00", 
-          "room" : "Auditorium", 
+          "day" : "2016/13",
+          "schedule" : "10-00", 
+          "room" : "auditorium", 
           "title" : "Scrum pour les nuls",
           "speaker_name" : "Jeff Shuterland"
         },
         {
           "id" : "xp-pour-les-nuls",
-          "path" : "/2016/xp-pour-les-nuls",
-          "schedule" : "10:00", 
-          "room" : "Auditorium", 
+          "day" : "2016/13",          
+          "schedule" : "10-00", 
+          "room" : "auditorium", 
           "title" : "XP pour les nuls",
           "speaker_name" : "Kent Beck"
         },
         {
           "id" : "christal-clear-pour-les-nuls",
-          "path" : "/2016/christal-clear-pour-les-nuls",
-          "schedule" : "10:00", 
-          "room" : "Auditorium", 
+          "day" : "2016/13",          
+          "schedule" : "10-00", 
+          "room" : "auditorium", 
           "title" : "Christal clear pour les nuls",
           "speaker_name" : "Alistair Cockburn"
         }    
@@ -61,13 +61,16 @@
       
       var separator = " ";
       var program_page = "";
+      
+      var conference_path = "";
 
       for (var conference_number=0; conference_number<number_of_conferences; conference_number++) {
+        conference_path = "/" + conferences[conference_number].day + "/" + conferences[conference_number].schedule + "/" + conferences[conference_number].room;
         program_page += 
         "<div id='conference_" + (conference_number+1) + "'>" + 
           "<span id='conference_schedule'>"+ conferences[conference_number].schedule + "</span>" + separator +
           "<span id='conference_room'>" + conferences[conference_number].room + "</span>\n" + separator +
-          "<a id='"+ conferences[conference_number].id +"' href='"+ conferences[conference_number].path +"'>" + conferences[conference_number].title + "</a>\n" + separator +
+          "<a id='"+ conferences[conference_number].id +"' href='"+ conference_path +"'>" + conferences[conference_number].title + "</a>\n" + separator +
           "<span>par</span>\n" + separator +
           "<span id='speaker_name'>" + conferences[conference_number].speaker_name + "</span>" + separator +
         "</div>\n";

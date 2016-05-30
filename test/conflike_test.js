@@ -8,8 +8,9 @@ const conference_title = 'Scrum pour les nuls'
 const conference_schedule = '10:00'
 const conference_room = 'Auditorium'
 const speaker_name = 'Jeff Shuterland'
-const conference_selector = "#scrum-pour-les-nuls"
-const conference_path = "/scrum-pour-les-nuls"
+const conference_id = "scrum-pour-les-nuls"
+const conference_selector = "#" + conference_id
+const conference_path = "/2016/13/10-00/auditorium"
 
 describe('Program', function() {
   const browser = new Browser();

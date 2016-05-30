@@ -5,7 +5,7 @@ var http = require('http').Server(app);
 
 app.use(express.static('public'));
 
-app.get('/scrum-pour-les-nuls', function(req, res){
+app.get('/2016/*', function(req, res){
   res.sendFile(__dirname + '/scrum-pour-les-nuls.html');
 });
 

@@ -22,6 +22,7 @@
       return [
         {
           "id" : "scrum-pour-les-nuls",
+          "path" : "/2016/13/10-00/auditorium",
           "schedule" : "10:00", 
           "room" : "Auditorium", 
           "title" : "Scrum pour les nuls",
@@ -29,6 +30,7 @@
         },
         {
           "id" : "xp-pour-les-nuls",
+          "path" : "/2016/xp-pour-les-nuls",
           "schedule" : "10:00", 
           "room" : "Auditorium", 
           "title" : "XP pour les nuls",
@@ -36,6 +38,7 @@
         },
         {
           "id" : "christal-clear-pour-les-nuls",
+          "path" : "/2016/christal-clear-pour-les-nuls",
           "schedule" : "10:00", 
           "room" : "Auditorium", 
           "title" : "Christal clear pour les nuls",
@@ -64,7 +67,7 @@
         "<div id='conference_" + (conference_number+1) + "'>" + 
           "<span id='conference_schedule'>"+ conferences[conference_number].schedule + "</span>" + separator +
           "<span id='conference_room'>" + conferences[conference_number].room + "</span>\n" + separator +
-          "<a id='"+ conferences[conference_number].id +"' href='/"+ conferences[conference_number].id +"'>" + conferences[conference_number].title + "</a>\n" + separator +
+          "<a id='"+ conferences[conference_number].id +"' href='"+ conferences[conference_number].path +"'>" + conferences[conference_number].title + "</a>\n" + separator +
           "<span>par</span>\n" + separator +
           "<span id='speaker_name'>" + conferences[conference_number].speaker_name + "</span>" + separator +
         "</div>\n";

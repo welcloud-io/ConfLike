@@ -48,11 +48,21 @@ describe('Program', function() {
   });
 });
 
+var request = require('request');
+function initializeDatabase(){
+  request.post({
+    url: "https://powerprez-welcloud.c9users.io/admin/init",
+    body: "1094794743"
+  }, function(error, response, body){
+    //console.log(response);
+  });
+}
 
 describe('Conference', function() {
-  const browser = new Browser();
+  const browser = new Browser({ debug: true });
 
   beforeEach(function(done) {
+    initializeDatabase();
     browser.visit(conference_path, done);
   });
 
@@ -116,4 +126,15 @@ describe('Conference', function() {
       browser.assert.text('#counter', '+2');      
     });    
   });  
+  
+  describe('Attendee choice is recorded', function() {
+    it('should show previous choice', function(done) {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Très bien');
+      browser.assert.text('#counter', '+2');
+      browser.reload().then(function(){
+        browser.assert.text('#counter', '+2');
+      }).then(done, done);
+    });    
+  });
 });

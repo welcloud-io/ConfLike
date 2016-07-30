@@ -59,14 +59,14 @@ function initializeDatabase(){
 }
 
 describe('Conference', function() {
-  const browser = new Browser({ debug: true });
+  const browser = new Browser();
 
   beforeEach(function(done) {
     initializeDatabase();
     browser.visit(conference_path, done);
   });
 
-  describe('Conference Page', function() {
+  describe('Conference Page (' +  conference_path + ')', function() {
     it('should load successful', function() {
       browser.assert.success();
     });
@@ -95,46 +95,40 @@ describe('Conference', function() {
     });
   });
   
-  describe('Attendee find the conference is not great', function() {
-    it('should mark conference as not great', function() {
+  describe('Conference Judgment (' +  conference_path + ')', function() {
+    it('should judge conference as not great', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Pas Super');
-      browser.assert.text('#counter', '-2');      
+      browser.assert.text('#counter', '-2');
     }); 
-  });
-  
-  describe('Attendee find the conference is so so', function() {
-    it('should mark teacher conference as Disliked when NO pressed', function() {
+
+    it('should judge conference conference so so', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Moyen');
-      browser.assert.text('#counter', '-1');      
+      browser.assert.text('#counter', '-1');
     });    
-  }); 
   
-  describe('Attendee find the conference is good', function() {
-    it('should mark teacher conference as Disliked when NO pressed', function() {
+    it('should judge conference conference as good', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Bien');
-      browser.assert.text('#counter', '+1');      
+      browser.assert.text('#counter', '+1');
     });    
-  });
   
-  describe('Attendee find the conference is very good', function() {
-    it('should mark teacher conference as Disliked when NO pressed', function() {
+    it('should judge conference as very good', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Très bien');
-      browser.assert.text('#counter', '+2');      
+      browser.assert.text('#counter', '+2');
     });    
-  });  
   
-  describe('Attendee choice is recorded', function() {
-    it('should show previous choice', function(done) {
+    it('should record judgment', function(done) {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Très bien');
       browser.assert.text('#counter', '+2');
       browser.reload().then(function(){
         browser.assert.text('#counter', '+2');
       }).then(done, done);
-    });    
+    });
   });
+  
 });
+

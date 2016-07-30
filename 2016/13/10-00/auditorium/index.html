@@ -8,13 +8,14 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>
+    var jugement_path = '/jugement';
     function getConferenceJudgement(level){
-      $.get("/jugement", function(data, status){
+      $.get('/2016/13/10-00/auditorium' + jugement_path, function(data, status){
         document.getElementById('counter').innerHTML = data;
       });
     }
     function saveConferenceJudgement(level){
-      $.post("/jugement", {'jugement': level}, function(data,status){
+      $.post('/2016/13/10-00/auditorium' + jugement_path, {'jugement': level}, function(data,status){
       });
     }
     function judgeConference(level) {

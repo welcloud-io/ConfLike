@@ -4,22 +4,24 @@ var host = process.env.HOST || 'powerprez-welcloud.c9users.io';
 var port = process.env.PORT || 8080;
 Browser.localhost(host + ':' + port, 3001);
 
-const conference_title = 'Scrum pour les nuls'
-const conference_schedule = '10-00'
-const conference_room = 'auditorium'
-const speaker_name = 'Jeff Shuterland'
-const conference_id = "scrum-pour-les-nuls"
-const conference_selector = "#" + conference_id
-const conference_path = "/2016/13/10-00/auditorium"
+const program_path = '/';
+const conference_title = 'Scrum pour les nuls';
+const conference_schedule = '10-00';
+const conference_room = 'auditorium';
+const speaker_name = 'Jeff Shuterland';
+const conference_id = "scrum-pour-les-nuls";
+const conference_selector = "#" + conference_id;
+const conference_path = "/2016/13/10-00/auditorium";
+const another_conference_path = "/2016/13/10-00/salle-1";
 
-describe('Program', function() {
+describe('The Program', function() {
   const browser = new Browser();
 
   beforeEach(function(done) {
-    browser.visit('/', done);
+    browser.visit(program_path, done);
   });
   
-  describe('Program Page', function() {
+  describe('Content (' + program_path + ')', function() {
     it('should load successful', function() {
       browser.assert.success();
     });
@@ -58,7 +60,7 @@ function initializeDatabase(){
   });
 }
 
-describe('Conference', function() {
+describe('A Conference', function() {
   const browser = new Browser();
 
   beforeEach(function(done) {
@@ -66,7 +68,7 @@ describe('Conference', function() {
     browser.visit(conference_path, done);
   });
 
-  describe('Conference Page (' +  conference_path + ')', function() {
+  describe('Content (' +  conference_path + ')', function() {
     it('should load successful', function() {
       browser.assert.success();
     });
@@ -95,7 +97,7 @@ describe('Conference', function() {
     });
   });
   
-  describe('Conference Judgment (' +  conference_path + ')', function() {
+  describe('Judgment (' +  conference_path + ')', function() {
     it('should judge conference as not great', function() {
       browser.assert.text('#counter', '0');      
       browser.pressButton('Pas Super');
@@ -129,6 +131,64 @@ describe('Conference', function() {
       }).then(done, done);
     });
   });
-  
-});
+});  
 
+describe('Another Conference', function() {
+  const browser = new Browser();
+
+  beforeEach(function(done) {
+    initializeDatabase();
+    browser.visit(another_conference_path, done);
+  });
+  
+  describe('Content (' + another_conference_path + ')', function() {
+    it('should load successful', function() {
+      browser.assert.success();
+    });
+  });    
+
+  describe('Judgment (' + another_conference_path + ')', function() {
+    it('should record judgment', function(done) {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Bien');
+      browser.assert.text('#counter', '+1');
+      browser.reload().then(function(){
+        browser.assert.text('#counter', '+1');
+      }).then(done, done);
+    });    
+  });
+  
+  describe('Navigation (from ' +  another_conference_path + ' to ' + conference_path  + ')', function() {
+    it('should record judgment for the right page', function(done) {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Bien');
+      browser.assert.text('#counter', '+1');
+      browser.visit(conference_path).then(function(){
+        browser.assert.text('#counter', '0');
+      }).then(done, done);
+    });
+
+    it('should record judgment for the right page', function(done) {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Bien');
+      browser.assert.text('#counter', '+1');
+      browser.visit(conference_path).then(function(){
+        browser.assert.text('#counter', '0');
+      }).then(done, done);
+    }); 
+    
+    it('should record judgment on both pages', function(done) {
+      browser.assert.text('#counter', '0');      
+      browser.pressButton('Bien');
+      browser.assert.text('#counter', '+1');
+      browser.visit(conference_path).then(function(){
+        browser.pressButton('Très bien');
+        browser.assert.text('#counter', '+2');
+      }).then(function(){
+        browser.visit(another_conference_path).then(function(){
+          browser.assert.text('#counter', '+1');
+        }).then(done, done);         
+      });
+    });    
+  });
+});

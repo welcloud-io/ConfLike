@@ -91,44 +91,49 @@ describe('A Conference', function() {
     
     it('should show the answer panel', function() {
       browser.assert.text('#not_great', 'Pas Super');
-      browser.assert.text('#so_so', 'Moyen');     
+      browser.assert.text('#so_so', 'Moyen');   
       browser.assert.text('#good', 'Bien');     
       browser.assert.text('#very_good', 'Très bien');     
     });
   });
   
   describe('Judgment (' +  conference_path + ')', function() {
-    it('should judge conference as not great', function() {
+    it('should judge conference as not great', function(done) {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('Pas Super');
-      browser.assert.text('#counter', '-2');
+      browser.pressButton('Pas Super').then(function(){
+        browser.assert.text('#counter', '-2');
+      }).then(done, done);        
     }); 
 
-    it('should judge conference conference so so', function() {
+    it('should judge conference conference so so', function(done) {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('Moyen');
-      browser.assert.text('#counter', '-1');
+      browser.pressButton('Moyen').then(function(){
+        browser.assert.text('#counter', '-1');
+      }).then(done, done);
     });    
   
-    it('should judge conference conference as good', function() {
+    it('should judge conference conference as good', function(done) {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('Bien');
-      browser.assert.text('#counter', '+1');
+      browser.pressButton('Bien').then(function(){
+        browser.assert.text('#counter', '+1');
+      }).then(done, done);      
     });    
   
-    it('should judge conference as very good', function() {
+    it('should judge conference as very good', function(done) {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('Très bien');
-      browser.assert.text('#counter', '+2');
-    });    
+      browser.pressButton('Très bien').then(function(){
+        browser.assert.text('#counter', '+2');
+      }).then(done, done);        
+    });
   
     it('should record judgment', function(done) {
       browser.assert.text('#counter', '0');      
-      browser.pressButton('Très bien');
-      browser.assert.text('#counter', '+2');
-      browser.reload().then(function(){
+      browser.pressButton('Très bien', function(){
         browser.assert.text('#counter', '+2');
-      }).then(done, done);
+        browser.reload().then(function(){
+          browser.assert.text('#counter', '+2');
+        }).then(done, done);       
+      });
     });
   });
 });  
